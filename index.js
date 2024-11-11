@@ -234,6 +234,7 @@ fs.readFile(filePath, "utf8", (err, data) => {
   const linesArray = data.split("\n");
   let filteredLines = linesArray
     .filter((line) => line.trim() !== "" && !line.trim()?.startsWith("//"))
+    ?.map((line) => (line?.includes("//") ? line?.split("//")[0] : line))
     ?.map((e) => e.trim());
 
   filteredLines = covertAInstruction(filteredLines);
